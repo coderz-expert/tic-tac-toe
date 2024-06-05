@@ -5,7 +5,6 @@ import './assets/index.css';
 export  const Main = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
-
   const handleClick = (i) => {
     const squaresCopy = squares.slice();
 	
@@ -18,16 +17,20 @@ export  const Main = () => {
     setXIsNext(!xIsNext);
   };
 
-
+const reset=()=>{
+setSquares(Array(9).fill(null));
+}
 
 
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
     status = `Winner: ${winner}`;
+	
   } else {
  if(!isNull(squares)){
    status = `Draw`;
+   
  }else{
     status = `Next player: ${xIsNext ? 'X' : 'O'}`;
 	}
@@ -41,6 +44,9 @@ export  const Main = () => {
       <div className="game-info mt-4 text-xl">
         <div>{status}</div>
       </div>
+	     <div className="game-info mt-4 text-xl">
+	  <button type="button" onClick={reset} className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">RESET</button>
+     </div>
     </div>
   );
 };
